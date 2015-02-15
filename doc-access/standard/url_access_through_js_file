@@ -27,6 +27,5 @@ temp = basic_html
 temp = temp.replace("'", '"')
 
 parsed = simplejson.loads(temp)
-print(parsed)
 for k in range(len(parsed)):
     print(parsed[k])
