@@ -1,6 +1,7 @@
 import urllib2
 import simplejson
 import json
+import webbrowser
 
 basic_url = 'http://gnuradio.org/doc/doxygen/search/all_2.js'
 
@@ -18,7 +19,7 @@ basic_req = urllib2.Request(basic_url, headers=hdr)
 try:
     basic_response = urllib2.urlopen(basic_req)
 except urllib2.HTTPError, e:
-    print e.fp.read()
+    br1 = e.fp.read()
 
 basic_html = basic_response.read()
 basic_html = basic_html[15:-1]
@@ -26,6 +27,9 @@ temp = basic_html
 
 temp = temp.replace("'", '"')
 
+key = 'block__set_relative_rate'
 parsed = simplejson.loads(temp)
 for k in range(len(parsed)):
-    print(parsed[k])
+    if parsed[k][1][0] == key:
+        block_url = 'http://gnuradio.org/doc/doxygen' + (repr(parsed[k][1][1][0][2:])[1:-1])
+webbrowser.open(block_url)
