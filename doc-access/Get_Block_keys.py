@@ -9,8 +9,6 @@ class Block_keysget:
     def __init__(self):
         self.platform = Platform()
         block_keys = self.platform.get_block_keys()
-        for i in block_keys:
-            print(i)
 
 def main():
     Block_keysget()
