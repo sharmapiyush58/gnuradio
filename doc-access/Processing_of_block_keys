@@ -13,5 +13,5 @@ for i in range(len(block_keys)):
         block_keys[i] = block_keys[i][4:]
     elif block_keys[i][0:5] == 'noaa_':
         block_keys[i] = block_keys[i][5:]
-    elif block_keys[i][0:6] == 'qtgui_':
+    elif block_keys[i][0:6] == 'qtgui_' or block_keys[i][0:6] == 'audio_':
         block_keys[i] = block_keys[i][6:]
