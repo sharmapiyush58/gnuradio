@@ -3,6 +3,7 @@ import simplejson
 import json
 import webbrowser
 
+# A test url
 basic_url = 'http://gnuradio.org/doc/doxygen/search/all_2.js'
 
 
@@ -27,7 +28,9 @@ temp = basic_html
 
 temp = temp.replace("'", '"')
 
+# A test key
 key = 'block__set_relative_rate'
+
 parsed = simplejson.loads(temp)
 for k in range(len(parsed)):
     if parsed[k][1][0] == key:
