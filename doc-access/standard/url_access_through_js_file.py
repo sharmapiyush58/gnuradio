@@ -54,3 +54,5 @@ for i in range(len(link)):
             break
     if flag == 1:
         break
+    if i == len(link)-1 :
+        print('No link found!')
