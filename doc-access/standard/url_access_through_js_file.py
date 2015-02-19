@@ -48,7 +48,6 @@ for i in range(len(link)):
             
         if parsed[k][1][0][:end_index] == key[:end_index]:
             block_url = 'http://gnuradio.org/doc/doxygen' + (repr(parsed[k][1][1][0][2:])[1:-1])
-            print(block_url)
             webbrowser.open(block_url)
             flag = 1 #checking if operation successful
             break
