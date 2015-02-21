@@ -38,11 +38,18 @@ for i in range(len(link)):
     parsed = simplejson.loads(temp)
 
     if key[-2:-1]+key[-1] == 'xx':
-        end_index = -2
-    elif key[-1] == 'x':
-        end_index = -1
-    else:
-        end_index = None
+            end_index = -2
+            if key[-3:-1]+key[-1] == 'xxx':
+                end_index = -3
+        elif key[-1] == 'x':
+            end_index = -1
+        elif key[-2:-1] + key[-1] == 'xb':
+            end_index = -2
+        elif key[-5:-3] == 'xx':
+            key = 'correlate_access_code_bb_ts'
+            end_index = None
+        else:
+            end_index = None
 
     for k in range(len(parsed)):
             
