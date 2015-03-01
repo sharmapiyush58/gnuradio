@@ -37,19 +37,16 @@ for index in range(len(keys)):
         temp = temp.replace("'", '"')
 
         parsed = simplejson.loads(temp)
+        
+        end_index = None
 
-        if key[-2:-1]+key[-1] == 'xx':
-            end_index = -2
-            if key[-3:-1]+key[-1] == 'xxx':
-                end_index = -3
-        elif key[-1] == 'x':
-            end_index = -1
-        elif key[-2:-1] + key[-1] == 'xb':
-            end_index = -2
-        elif key[-5:-3] == 'xx':
+        fplist = { 'xx': -2, 'xxx':-3, 'x':-1, 'xb':-2}
+        
+        for p, q in fplist.items():
+            if key.rpartition('_')[-1] == p:
+                end_index = q
+        if key[-5:-3] == 'xx':  #A special case, nothing much can be done about it rather than hardcoding prefixes
             key = 'correlate_access_code_bb_ts'
-            end_index = None
-        else:
             end_index = None
 
         for k in range(len(parsed)):
