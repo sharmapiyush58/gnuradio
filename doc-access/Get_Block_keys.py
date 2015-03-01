@@ -10,19 +10,14 @@ class Block_keysget:
         self.platform = Platform()
         self.block_keys = self.platform.get_block_keys()
         block_keys = self.block_keys
+        prefixes = ('analog', 'blocks', 'channels', 'digital', 'trellis', 'vocoder', 'dtv', 'fcd', 'fec', 'fft', 'noaa', 'qtgui', 'audio')
         for i in range(len(block_keys)):
-            if block_keys[i][0:7] == 'analog_' or block_keys[i][0:7] == 'blocks_':
-                block_keys[i] = block_keys[i][7:]
-            elif block_keys[i][0:9] == 'channels_':
-                block_keys[i] = block_keys[i][9:]
-            elif block_keys[i][0:8] == 'digital_' or block_keys[i][0:8] == 'trellis_' or block_keys[i][0:8] == 'vocoder_':
-                block_keys[i] = block_keys[i][8:]
-            elif block_keys[i][0:4] == 'dtv_' or block_keys[i][0:4] == 'fcd_' or block_keys[i][0:4] == 'fec_' or block_keys[i][0:4] == 'fft_':
-                block_keys[i] = block_keys[i][4:]
-            elif block_keys[i][0:5] == 'noaa_':
-                block_keys[i] = block_keys[i][5:]
-            elif block_keys[i][0:6] == 'qtgui_' or block_keys[i][0:6] == 'audio_':
-                block_keys[i] = block_keys[i][6:]
+            pkey = block_keys[i].partition('_')
+            for pre in prefixes:
+                if pkey[0] == pre:
+                    block_keys[i] = pkey[2]
+                    break
+
         self.block_keys = block_keys
 
 def main():
